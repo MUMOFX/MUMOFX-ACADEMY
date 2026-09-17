@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MUMOFX Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-auth="required">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"><img src="assets/logo.svg" alt="MUMOFX logo" /></span>
+        <span class="brand-name">MUMOFX<small>TRADING TECHNOLOGY</small></span>
+      </a>
+      <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="academy.html">Academy</a>
+        <a href="bots.html">Bots</a>
+        <a href="market.html">Market</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="signin.html">Sign In</a>
+        <a href="signup.html" class="cta">Join</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section-sm">
+    <div class="container page-header">
+      <div class="eyebrow"><span class="dot"></span>Member dashboard</div>
+      <h1>Welcome back, <span class="gradient-text" id="currentUser">Trader</span></h1>
+      <p class="lead">Your secure dashboard keeps your academy progress, trading notes and account details in one place.</p>
+    </div>
+
+    <div class="container dashboard-grid">
+      <div class="user-panel">
+        <h3>Account overview</h3>
+        <p id="sessionStatus">Authenticated</p>
+        <span class="pill">Secure access enabled</span>
+      </div>
+      <div class="user-panel">
+        <h3>Quick actions</h3>
+        <div class="hero-actions">
+          <a href="academy.html" class="btn primary">Open academy</a>
+          <a href="bots.html" class="btn accent">Review bots</a>
+          <button id="logoutButton" class="btn danger">Log out</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container section-sm">
+      <div class="content-card">
+        <h2>Member notes</h2>
+        <ul>
+          <li>Complete your trading plan before any new entry.</li>
+          <li>Review risk rules and journal each trade after market close.</li>
+          <li>Protect capital, protect process and protect consistency.</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-note">
+      <span>© <span id="year"></span> MUMOFX Trading</span>
+      <span><a href="legal/disclaimer.html">Disclaimer</a> • <a href="legal/privacy.html">Privacy</a> • <a href="legal/terms.html">Terms</a></span>
+    </div>
+  </footer>
+
+  <script src="auth.js"></script>
+</body>
+</html>

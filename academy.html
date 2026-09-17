@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MUMOFX Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"><img src="assets/logo.svg" alt="MUMOFX logo" /></span>
+        <span class="brand-name">MUMOFX<small>TRADING TECHNOLOGY</small></span>
+      </a>
+      <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="academy.html">Academy</a>
+        <a href="bots.html">Bots</a>
+        <a href="market.html">Market</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="signin.html">Sign In</a>
+        <a href="signup.html" class="cta">Join</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container page-header">
+      <div class="eyebrow"><span class="dot"></span>Billionaire Academy</div>
+      <h1>Learn. Execute. <span class="gradient-text">Evolve.</span></h1>
+      <p class="lead">A practical framework for building trading skill, process discipline and sustainable performance over time.</p>
+    </div>
+
+    <section class="section-sm">
+      <div class="container two-col">
+        <div class="panel">
+          <div class="eyebrow"><span class="dot"></span>Complete course</div>
+          <h3>Trading mastery roadmap</h3>
+          <div class="module-grid">
+            <div class="module"><b>01 · Market foundations</b><span>Sessions, structure, liquidity and volatility.</span></div>
+            <div class="module"><b>02 · Price action</b><span>Trend, support, resistance, momentum and reaction.</span></div>
+            <div class="module"><b>03 · SMC &amp; structure</b><span>BOS, CHOCH, FVG and order-flow context.</span></div>
+            <div class="module"><b>04 · Risk management</b><span>Exposure, stop placement and position sizing.</span></div>
+            <div class="module"><b>05 · Psychology</b><span>Discipline, patience and controlled decision-making.</span></div>
+            <div class="module"><b>06 · Execution</b><span>Entries, invalidation, targets and trade journaling.</span></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="eyebrow"><span class="dot"></span>Trader standard</div>
+          <h3>The 5 rules before capital</h3>
+          <ul class="list-check">
+            <li>Know exactly why you are entering.</li>
+            <li>Know where the idea is invalidated.</li>
+            <li>Know the maximum amount you can lose.</li>
+            <li>Know where profit will be taken.</li>
+            <li>Accept that no setup is guaranteed.</li>
+          </ul>
+          <div class="banner-note">Protecting capital gives your edge enough time to work.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-sm">
+      <div class="container">
+        <h3 class="academy-subtitle">Trading psychology: a <span class="gradient-text">professional mindset.</span></h3>
+        <div class="advice-grid">
+          <article class="advice-card">
+            <h4>Discipline over impulse</h4>
+            <p>Trade the plan, not the candle. If a setup is not valid, staying flat is a correct decision.</p>
+            <ul>
+              <li>Write entries before risk is taken.</li>
+              <li>Set daily loss limits.</li>
+              <li>Stop after emotional damage.</li>
+            </ul>
+          </article>
+          <article class="advice-card">
+            <h4>Detach from the outcome</h4>
+            <p>A good trade can lose. A bad trade can win. Judge yourself by process, not one outcome.</p>
+            <ul>
+              <li>Review the reason behind every entry.</li>
+              <li>Think in series of trades.</li>
+              <li>Focus on execution quality.</li>
+            </ul>
+          </article>
+          <article class="advice-card">
+            <h4>Control FOMO</h4>
+            <p>Chasing momentum can ruin process discipline. Wait for clean structure, not desperation.</p>
+            <ul>
+              <li>Missed trades are not punishments.</li>
+              <li>Never size up to recover losses.</li>
+              <li>Follow the plan calmly.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-sm">
+      <div class="container">
+        <h3 class="academy-subtitle">Risk management <span class="gradient-text">advice.</span></h3>
+        <div class="advice-grid">
+          <article class="advice-card">
+            <h4>Risk small enough to think clearly</h4>
+            <p>Choose a maximum risk that you can accept emotionally without compromising your process.</p>
+          </article>
+          <article class="advice-card">
+            <h4>Stop equals invalidation</h4>
+            <p>Place stops where your thesis is invalid. Never move the stop to justify the trade.</p>
+          </article>
+          <article class="advice-card">
+            <h4>Cap daily damage</h4>
+            <p>When losing limits are reached, stop. Protect tomorrow instead of forcing outcomes today.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-sm">
+      <div class="container">
+        <h3 class="academy-subtitle">Take-profit checklist</h3>
+        <div class="panel">
+          <div class="checklist" id="tpChecklist">
+            <label class="check-item"><input type="checkbox" /> Is my TP at a logical liquidity or structure area?</label>
+            <label class="check-item"><input type="checkbox" /> Is the reward acceptable relative to the risk?</label>
+            <label class="check-item"><input type="checkbox" /> Is the trade still valid after volatility shifts?</label>
+            <label class="check-item"><input type="checkbox" /> Am I moving TP because of greed or analysis?</label>
+            <label class="check-item"><input type="checkbox" /> Is my stop protected by the written plan?</label>
+            <label class="check-item"><input type="checkbox" /> Am I evaluating the market as it is, not as I wish it to be?</label>
+            <label class="check-item"><input type="checkbox" /> Have I checked for major event risk?</label>
+            <label class="check-item"><input type="checkbox" /> Can I accept the result without emotion?</label>
+          </div>
+          <div class="check-progress">Checklist progress: <span id="tpCount">0/8</span>
+            <div class="progress-bar"><span id="tpProgress"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-sm">
+      <div class="container">
+        <h3 class="academy-subtitle">Your trading <span class="gradient-text">game plan.</span></h3>
+        <div class="plan-grid">
+          <div class="plan-step"><b>01 · PREPARE</b><h4>Market context</h4><p>Check session, direction, key levels and volatility before entering.</p></div>
+          <div class="plan-step"><b>02 · DEFINE</b><h4>Setup</h4><p>Write exact conditions that must be present before an entry is allowed.</p></div>
+          <div class="plan-step"><b>03 · EXECUTE</b><h4>Entry &amp; risk</h4><p>Set entry, stop, target and size before clicking.</p></div>
+          <div class="plan-step"><b>04 · MANAGE</b><h4>Protect</h4><p>Respect the plan and do not widen risk because of emotion.</p></div>
+          <div class="plan-step"><b>05 · REVIEW</b><h4>Improve</h4><p>Journal the chart and identify one lesson for next time.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-note">
+      <span>© <span id="year"></span> MUMOFX Trading</span>
+      <span><a href="legal/disclaimer.html">Disclaimer</a> • <a href="legal/privacy.html">Privacy</a> • <a href="legal/terms.html">Terms</a></span>
+    </div>
+  </footer>
+
+  <script src="auth.js"></script>
+</body>
+</html>

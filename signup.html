@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MUMOFX Sign Up</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="auth-shell">
+    <div class="auth-card">
+      <a href="index.html" class="brand" style="margin-bottom: 8px;">
+        <span class="brand-mark"><img src="assets/logo.svg" alt="MUMOFX logo" /></span>
+        <span class="brand-name">MUMOFX<small>TRADING TECHNOLOGY</small></span>
+      </a>
+      <h1>Create account</h1>
+      <p>Join MUMOFX to access the academy, plans and member resources.</p>
+      <form id="signupForm">
+        <div class="form-grid">
+          <div class="field">
+            <label for="signup-name">Full name</label>
+            <input id="signup-name" name="name" type="text" placeholder="Your full name" required />
+          </div>
+          <div class="field">
+            <label for="signup-email">Email</label>
+            <input id="signup-email" name="email" type="email" placeholder="name@example.com" required />
+          </div>
+          <div class="field">
+            <label for="signup-password">Password</label>
+            <input id="signup-password" name="password" type="password" placeholder="At least 8 characters" required />
+          </div>
+        </div>
+        <div class="form-meta">
+          <span>Already joined?</span>
+          <a class="inline-link" href="signin.html">Sign in</a>
+        </div>
+        <button class="btn primary" type="submit" style="width: 100%; margin-top: 18px;">Create account</button>
+        <div class="form-status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+  <script src="auth.js"></script>
+</body>
+</html>

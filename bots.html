@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MUMOFX Bots</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"><img src="assets/logo.svg" alt="MUMOFX logo" /></span>
+        <span class="brand-name">MUMOFX<small>TRADING TECHNOLOGY</small></span>
+      </a>
+      <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="academy.html">Academy</a>
+        <a href="bots.html">Bots</a>
+        <a href="market.html">Market</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="signin.html">Sign In</a>
+        <a href="signup.html" class="cta">Join</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container page-header">
+      <div class="eyebrow"><span class="dot"></span>KINGBOT technology</div>
+      <h1>Automated <span class="gradient-text">trading systems.</span></h1>
+      <p class="lead">Explore how each KINGBOT profile is organized by strategy, pairs, timeframe, risk logic and performance characteristics.</p>
+    </div>
+
+    <section class="section-sm">
+      <div class="container">
+        <div class="collection-visual"><img src="bots-collection.png" alt="KINGBOT collection" /></div>
+        <div class="filter-bar">
+          <button class="filter-button active" data-filter="all">All bots</button>
+          <button class="filter-button" data-filter="forex">Forex</button>
+          <button class="filter-button" data-filter="gold">Gold</button>
+          <button class="filter-button" data-filter="crypto">Crypto</button>
+          <button class="filter-button" data-filter="scalping">Scalping</button>
+        </div>
+
+        <div class="bot-grid">
+          <article class="bot-card" data-category="gold scalping">
+            <div class="bot-head"><span class="bot-number">BOT 01</span><span class="bot-status">● Active</span></div>
+            <h3>KINGBOT GOLD</h3>
+            <p>XAUUSD-focused automated system built for structured gold opportunities.</p>
+            <div class="bot-sections">
+              <div class="bot-section"><b>01</b><div><strong>Strategy &amp; logic</strong><span>Trend, breakout and reversal mapping.</span></div></div>
+              <div class="bot-section"><b>02</b><div><strong>Pairs</strong><span>XAUUSD with session-aware controls.</span></div></div>
+              <div class="bot-section"><b>03</b><div><strong>Timeframes</strong><span>M5 | M15 | H1 | H4</span></div></div>
+              <div class="bot-section"><b>04</b><div><strong>Risk</strong><span>Dynamic sizing and exposure caps.</span></div></div>
+            </div>
+            <div class="bot-tags"><span>Gold</span><span>XAUUSD</span><span>MT5</span></div>
+            <div class="bot-footer"><span class="bot-price">Gold engine</span><button class="btn ghost" data-bot="KINGBOT GOLD">Details</button></div>
+          </article>
+
+          <article class="bot-card" data-category="forex">
+            <div class="bot-head"><span class="bot-number">BOT 02</span><span class="bot-status">● Active</span></div>
+            <h3>KINGBOT FOREX</h3>
+            <p>Multi-pair FX automation designed around trend and liquidity structure.</p>
+            <div class="bot-sections">
+              <div class="bot-section"><b>01</b><div><strong>Strategy &amp; logic</strong><span>Trend following and structure bias.</span></div></div>
+              <div class="bot-section"><b>02</b><div><strong>Pairs</strong><span>EURUSD | GBPUSD | USDJPY</span></div></div>
+              <div class="bot-section"><b>03</b><div><strong>Timeframes</strong><span>M5 | M15 | H1 | H4</span></div></div>
+              <div class="bot-section"><b>04</b><div><strong>Risk</strong><span>Exposure limits and trailing controls.</span></div></div>
+            </div>
+            <div class="bot-tags"><span>Forex</span><span>Multi-pair</span><span>MT5</span></div>
+            <div class="bot-footer"><span class="bot-price">Forex engine</span><button class="btn ghost" data-bot="KINGBOT FOREX">Details</button></div>
+          </article>
+
+          <article class="bot-card" data-category="crypto">
+            <div class="bot-head"><span class="bot-number">BOT 03</span><span class="bot-status">● Active</span></div>
+            <h3>KINGBOT CRYPTO</h3>
+            <p>Volatility-aware digital asset engine for trend and breakout opportunities.</p>
+            <div class="bot-sections">
+              <div class="bot-section"><b>01</b><div><strong>Strategy &amp; logic</strong><span>Momentum and expansion detection.</span></div></div>
+              <div class="bot-section"><b>02</b><div><strong>Pairs</strong><span>BTCUSD | ETHUSD | selected crypto pairs</span></div></div>
+              <div class="bot-section"><b>03</b><div><strong>Timeframes</strong><span>M5 | M15 | H1 | H4</span></div></div>
+              <div class="bot-section"><b>04</b><div><strong>Risk</strong><span>Adaptive sizing and volatility checks.</span></div></div>
+            </div>
+            <div class="bot-tags"><span>Crypto</span><span>BTCUSD</span><span>Volatility</span></div>
+            <div class="bot-footer"><span class="bot-price">Crypto engine</span><button class="btn ghost" data-bot="KINGBOT CRYPTO">Details</button></div>
+          </article>
+
+          <article class="bot-card" data-category="scalping forex">
+            <div class="bot-head"><span class="bot-number">BOT 04</span><span class="bot-status">● Active</span></div>
+            <h3>KINGBOT SCALPER</h3>
+            <p>High-speed execution system focused on short-term, disciplined entries.</p>
+            <div class="bot-sections">
+              <div class="bot-section"><b>01</b><div><strong>Strategy &amp; logic</strong><span>Fast momentum and short-duration execution.</span></div></div>
+              <div class="bot-section"><b>02</b><div><strong>Pairs</strong><span>EURUSD | GBPUSD | XAUUSD</span></div></div>
+              <div class="bot-section"><b>03</b><div><strong>Timeframes</strong><span>M1 | M5 | M15</span></div></div>
+              <div class="bot-section"><b>04</b><div><strong>Risk</strong><span>Tight stop and exposure monitoring.</span></div></div>
+            </div>
+            <div class="bot-tags"><span>Scalping</span><span>Fast entry</span><span>MT5</span></div>
+            <div class="bot-footer"><span class="bot-price">Scalp engine</span><button class="btn ghost" data-bot="KINGBOT SCALPER">Details</button></div>
+          </article>
+
+          <article class="bot-card" data-category="forex gold">
+            <div class="bot-head"><span class="bot-number">BOT 05</span><span class="bot-status">● Active</span></div>
+            <h3>KINGBOT SMART TREND</h3>
+            <p>Trend-aware system built around structure alignment and directional context.</p>
+            <div class="bot-sections">
+              <div class="bot-section"><b>01</b><div><strong>Strategy &amp; logic</strong><span>Trend, structure and liquidity bias.</span></div></div>
+              <div class="bot-section"><b>02</b><div><strong>Pairs</strong><span>Forex and gold major instruments.</span></div></div>
+              <div class="bot-section"><b>03</b><div><strong>Timeframes</strong><span>M15 | H1 | H4 | D1</span></div></div>
+              <div class="bot-section"><b>04</b><div><strong>Risk</strong><span>ATR-aware and adaptive management.</span></div></div>
+            </div>
+            <div class="bot-tags"><span>Trend</span><span>SMC</span><span>MT5</span></div>
+            <div class="bot-footer"><span class="bot-price">Trend engine</span><button class="btn ghost" data-bot="KINGBOT SMART TREND">Details</button></div>
+          </article>
+
+          <article class="bot-card" data-category="forex crypto multi">
+            <div class="bot-head"><span class="bot-number">BOT 06</span><span class="bot-status">● Active</span></div>
+            <h3>KINGBOT ELITE</h3>
+            <p>Multi-market automation with portfolio risk controls and adaptive decision logic.</p>
+            <div class="bot-sections">
+              <div class="bot-section"><b>01</b><div><strong>Strategy &amp; logic</strong><span>AI-assisted multi-strategy selection.</span></div></div>
+              <div class="bot-section"><b>02</b><div><strong>Pairs</strong><span>Forex | Gold | Crypto | indices</span></div></div>
+              <div class="bot-section"><b>03</b><div><strong>Timeframes</strong><span>M5 | M15 | H1 | H4 | D1</span></div></div>
+              <div class="bot-section"><b>04</b><div><strong>Risk</strong><span>Portfolio-aware exposure controls.</span></div></div>
+            </div>
+            <div class="bot-tags"><span>Multi-market</span><span>AI</span><span>Risk</span></div>
+            <div class="bot-footer"><span class="bot-price">Elite engine</span><button class="btn ghost" data-bot="KINGBOT ELITE">Details</button></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="botModal">
+    <div class="modal-box">
+      <button class="modal-close" aria-label="Close">×</button>
+      <div class="eyebrow"><span class="dot"></span>KINGBOT technology</div>
+      <h2 id="modalTitle">KINGBOT</h2>
+      <p>Explore the full deployment model for this system and request configuration, access and platform details from the MUMOFX team.</p>
+      <div class="modal-features">
+        <div>⚡ Automated analysis</div>
+        <div>◈ Market monitoring</div>
+        <div>◎ Risk controls</div>
+        <div>⌁ Trade execution</div>
+      </div>
+      <a id="modalWhatsApp" href="https://wa.me/254180225832" target="_blank" rel="noreferrer" class="btn primary">Request details</a>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-note">
+      <span>© <span id="year"></span> MUMOFX Trading</span>
+      <span><a href="legal/disclaimer.html">Disclaimer</a> • <a href="legal/privacy.html">Privacy</a> • <a href="legal/terms.html">Terms</a></span>
+    </div>
+  </footer>
+
+  <script src="auth.js"></script>
+</body>
+</html>
