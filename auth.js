@@ -1,51 +1,3 @@
-const AUTH_KEY = 'mumofx_session_v1';
-const USERS_KEY = 'mumofx_users_v1';
-
-function safeGet(key, fallback) {
-  try {
-    const value = localStorage.getItem(key);
-    return value ? JSON.parse(value) : fallback;
-  } catch (error) {
-    return fallback;
-  }
-}
-
-function safeSet(key, value) {
-  localStorage.setItem(key, JSON.stringify(value));
-}
-
-function generateSalt() {
-  return window.crypto.getRandomValues(new Uint8Array(16));
-}
-
-async function hashPassword(password, salt) {
-  const encoder = new TextEncoder();
-  const keyMaterial = await window.crypto.subtle.importKey(
-    'raw',
-    encoder.encode(password),
-    'PBKDF2',
-    false,
-    ['deriveBits']
-  );
-
-  const bits = await window.crypto.subtle.deriveBits(
-    {
-      name: 'PBKDF2',
-      salt,
-      iterations: 250000,
-      hash: 'SHA-256'
-    },
-    keyMaterial,
-    256
-  );
-
-  return Array.from(new Uint8Array(bits)).map((b) => b.toString(16).padStart(2, '0')).join('');
-}
-
-function validateEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
 function setStatus(element, message, state) {
   if (!element) return;
   element.textContent = message;
@@ -65,7 +17,7 @@ async function handleSignup(event) {
     return;
   }
 
-  if (!validateEmail(email)) {
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     setStatus(status, 'Please enter a valid email address.', 'error');
     return;
   }
@@ -75,107 +27,76 @@ async function handleSignup(event) {
     return;
   }
 
-  const users = safeGet(USERS_KEY, []);
-  if (users.some((user) => user.email.toLowerCase() === email.toLowerCase())) {
-    setStatus(status, 'An account with this email already exists.', 'error');
-    return;
+  try {
+    const response = await fetch('/api/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, password })
+    });
+
+    const payload = await response.json();
+    if (!response.ok) {
+      setStatus(status, payload.message || 'Signup failed.', 'error');
+      return;
+    }
+
+    setStatus(status, 'Account created. Redirecting...', 'success');
+    setTimeout(() => window.location.href = '/dashboard.html', 600);
+  } catch (error) {
+    setStatus(status, 'Signup failed. Please try again.', 'error');
   }
-
-  const salt = generateSalt();
-  const passwordHash = await hashPassword(password, salt);
-  const user = {
-    name,
-    email: email.toLowerCase(),
-    passwordHash,
-    salt: Array.from(salt),
-    createdAt: new Date().toISOString()
-  };
-
-  users.push(user);
-  safeSet(USERS_KEY, users);
-
-  safeSet(AUTH_KEY, {
-    name,
-    email: user.email,
-    token: crypto.randomUUID(),
-    loggedInAt: Date.now()
-  });
-
-  setStatus(status, 'Account created. Redirecting...', 'success');
-  window.setTimeout(() => {
-    window.location.href = 'dashboard.html';
-  }, 600);
 }
 
 async function handleSignin(event) {
   event.preventDefault();
   const form = event.currentTarget;
-  const email = form.querySelector('[name="email"]').value.trim().toLowerCase();
+  const email = form.querySelector('[name="email"]').value.trim();
   const password = form.querySelector('[name="password"]').value;
   const status = form.querySelector('.form-status');
 
-  const users = safeGet(USERS_KEY, []);
-  const match = users.find((user) => user.email === email);
-
-  if (!match) {
-    setStatus(status, 'No user found for that email.', 'error');
-    return;
-  }
-
-  const salt = new Uint8Array(match.salt);
-  const hash = await hashPassword(password, salt);
-
-  if (hash !== match.passwordHash) {
-    setStatus(status, 'Incorrect password.', 'error');
-    return;
-  }
-
-  safeSet(AUTH_KEY, {
-    name: match.name,
-    email: match.email,
-    token: crypto.randomUUID(),
-    loggedInAt: Date.now()
-  });
-
-  setStatus(status, 'Signed in successfully. Redirecting...', 'success');
-  window.setTimeout(() => {
-    window.location.href = 'dashboard.html';
-  }, 600);
-}
-
-function requireAuth() {
-  const session = safeGet(AUTH_KEY, null);
-  if (!session) {
-    window.location.href = 'signin.html';
-    return null;
-  }
-  return session;
-}
-
-function bindAuthForms() {
-  const signupForm = document.querySelector('#signupForm');
-  if (signupForm) signupForm.addEventListener('submit', handleSignup);
-
-  const signinForm = document.querySelector('#signinForm');
-  if (signinForm) signinForm.addEventListener('submit', handleSignin);
-
-  const logoutButton = document.querySelector('#logoutButton');
-  if (logoutButton) {
-    logoutButton.addEventListener('click', () => {
-      localStorage.removeItem(AUTH_KEY);
-      window.location.href = 'signin.html';
+  try {
+    const response = await fetch('/api/signin', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
     });
-  }
 
-  const currentUserEl = document.querySelector('#currentUser');
-  const session = safeGet(AUTH_KEY, null);
-  if (currentUserEl && session) {
-    currentUserEl.textContent = `Logged in as ${session.name}`;
-  }
+    const payload = await response.json();
+    if (!response.ok) {
+      setStatus(status, payload.message || 'Sign in failed.', 'error');
+      return;
+    }
 
-  const sessionStatus = document.querySelector('#sessionStatus');
-  if (sessionStatus && session) {
-    sessionStatus.textContent = `Authenticated • ${session.email}`;
+    setStatus(status, 'Signed in successfully. Redirecting...', 'success');
+    setTimeout(() => window.location.href = '/dashboard.html', 600);
+  } catch (error) {
+    setStatus(status, 'Sign in failed. Please try again.', 'error');
+  }
+}
+
+async function handleLogout() {
+  try {
+    await fetch('/api/signout', { method: 'POST' });
+    window.location.href = '/signin.html';
+  } catch (error) {
+    window.location.href = '/signin.html';
+  }
+}
+
+async function loadSession() {
+  try {
+    const response = await fetch('/api/session');
+    const data = await response.json();
+    if (!data.authenticated) return null;
+
+    const currentUserEl = document.querySelector('#currentUser');
+    const sessionStatus = document.querySelector('#sessionStatus');
+    if (currentUserEl) currentUserEl.textContent = data.user.name;
+    if (sessionStatus) sessionStatus.textContent = `Authenticated • ${data.user.email}`;
+
+    return data.user;
+  } catch (error) {
+    return null;
   }
 }
 
@@ -190,15 +111,100 @@ function initMenu() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  initMenu();
-  bindAuthForms();
+function renderLineChart(svgId, points, color = '#00e5ff') {
+  const svg = document.getElementById(svgId);
+  if (!svg || !points || !points.length) return;
 
+  const width = 500;
+  const height = 180;
+  const min = Math.min(...points);
+  const max = Math.max(...points);
+  const range = max - min || 1;
+
+  const path = points.map((value, index) => {
+    const x = (index / (points.length - 1)) * width;
+    const y = height - ((value - min) / range) * (height - 20) - 10;
+    return `${index === 0 ? 'M' : 'L'} ${x} ${y}`;
+  }).join(' ');
+
+  svg.innerHTML = `
+    <defs>
+      <linearGradient id="${svgId}-fill" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0%" stop-color="${color}" stop-opacity="0.4"></stop>
+        <stop offset="100%" stop-color="${color}" stop-opacity="0.05"></stop>
+      </linearGradient>
+    </defs>
+    <path d="${path} L ${width} ${height} L 0 ${height} Z" fill="url(#${svgId}-fill)" opacity="0.8"></path>
+    <path d="${path}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+  `;
+}
+
+async function loadMarketData() {
+  try {
+    const response = await fetch('/api/market/overview');
+    const data = await response.json();
+    const rows = data.symbols || [];
+    const tableBody = document.getElementById('marketTableBody');
+    if (tableBody) {
+      tableBody.innerHTML = rows.map((symbol) => `
+        <tr>
+          <td class="symbol">${symbol.symbol}</td>
+          <td>${Number(symbol.price).toLocaleString(undefined, { maximumFractionDigits: symbol.symbol.includes('/') ? 4 : 2 })}</td>
+          <td class="${symbol.changePct >= 0 ? 'up' : 'down'}">${symbol.changePct >= 0 ? '+' : ''}${symbol.changePct.toFixed(2)}%</td>
+          <td class="${symbol.changePct >= 0 ? 'up' : 'down'}">${symbol.changePct >= 0 ? 'Bullish' : 'Bearish'}</td>
+        </tr>
+      `).join('');
+    }
+
+    const averageChange = rows.reduce((total, item) => total + Number(item.changePct || 0), 0) / Math.max(rows.length, 1);
+    const sentimentValue = Math.max(0, Math.min(100, Math.round(50 + averageChange * 2.5)));
+    const marketSentiment = document.getElementById('marketSentiment');
+    const marketSentimentText = document.getElementById('marketSentimentText');
+    const volatilityStatus = document.getElementById('volatilityStatus');
+
+    if (marketSentiment) marketSentiment.textContent = `${sentimentValue}%`;
+    if (marketSentimentText) marketSentimentText.textContent = averageChange >= 0 ? '▲ Live bullish pressure' : '▼ Live bearish pressure';
+    if (volatilityStatus) volatilityStatus.textContent = Math.abs(averageChange) > 1 ? 'High' : 'Moderate';
+
+    const btcChartData = await fetch('/api/market/chart?symbol=BTCUSDT&interval=1h&limit=24').then((res) => res.json());
+    const ethChartData = await fetch('/api/market/chart?symbol=ETHUSDT&interval=1h&limit=24').then((res) => res.json());
+    renderLineChart('btcChart', (btcChartData.points || []).map((point) => point.close), '#00e5ff');
+    renderLineChart('ethChart', (ethChartData.points || []).map((point) => point.close), '#8b5cf6');
+  } catch (error) {
+    const tableBody = document.getElementById('marketTableBody');
+    if (tableBody) {
+      tableBody.innerHTML = '<tr><td colspan="4">Live market feed unavailable.</td></tr>';
+    }
+    const marketSentimentText = document.getElementById('marketSentimentText');
+    if (marketSentimentText) marketSentimentText.textContent = '● Feed unavailable';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  initMenu();
   document.getElementById('year') && (document.getElementById('year').textContent = new Date().getFullYear());
+
+  const signupForm = document.querySelector('#signupForm');
+  if (signupForm) signupForm.addEventListener('submit', handleSignup);
+
+  const signinForm = document.querySelector('#signinForm');
+  if (signinForm) signinForm.addEventListener('submit', handleSignin);
+
+  const logoutButton = document.querySelector('#logoutButton');
+  if (logoutButton) logoutButton.addEventListener('click', handleLogout);
 
   const body = document.body;
   if (body?.dataset?.auth === 'required') {
-    requireAuth();
+    const session = await loadSession();
+    if (!session) {
+      window.location.href = '/signin.html';
+      return;
+    }
+  }
+
+  if (document.getElementById('marketTableBody')) {
+    await loadMarketData();
+    setInterval(loadMarketData, 30000);
   }
 
   const tpChecks = [...document.querySelectorAll('#tpChecklist input')];
@@ -212,21 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     tpChecks.forEach((check) => check.addEventListener('change', updateTPProgress));
     updateTPProgress();
-  }
-
-  const btcPrice = document.getElementById('btcPrice');
-  if (btcPrice) {
-    async function getBTC() {
-      try {
-        const response = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT');
-        const data = await response.json();
-        btcPrice.textContent = '$' + Number(data.price).toLocaleString('en-US', { maximumFractionDigits: 2 });
-      } catch (error) {
-        btcPrice.textContent = 'Unavailable';
-      }
-    }
-    getBTC();
-    setInterval(getBTC, 30000);
   }
 
   document.querySelectorAll('.filter-button').forEach((button) => {

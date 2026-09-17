@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MUMOFX Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .admin-shell { padding: 40px 0 70px; }
+    .admin-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 22px; }
+    .admin-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-bottom: 22px; }
+    .metric-card { background: linear-gradient(145deg, rgba(18,27,45,.8), rgba(6,10,16,.9)); border: 1px solid var(--line); border-radius: 20px; padding: 22px; }
+    .metric-card span { color: var(--muted); font-size: 0.66rem; letter-spacing: 0.13em; text-transform: uppercase; }
+    .metric-card strong { display: block; margin-top: 10px; font-size: clamp(1.8rem, 3vw, 3rem); font-family: 'Orbitron', sans-serif; }
+    .admin-content { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 18px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 14px 12px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.8rem; }
+    th { font-size: 0.62rem; letter-spacing: 0.12em; color: #7d8aa0; text-transform: uppercase; }
+    .tag { display: inline-block; border-radius: 999px; padding: 7px 10px; background: rgba(45,227,157,0.10); border: 1px solid rgba(45,227,157,0.18); color: var(--green); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; }
+    .admin-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .mini-panel { background: linear-gradient(145deg, rgba(18,27,45,.8), rgba(6,10,16,.9)); border: 1px solid var(--line); border-radius: 20px; padding: 22px; }
+    .mini-panel ul { margin: 14px 0 0; padding-left: 18px; color: var(--muted); }
+    .mini-panel li { margin: 8px 0; }
+    @media (max-width: 900px) {
+      .admin-grid, .admin-content { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"><img src="assets/logo.svg" alt="MUMOFX logo" /></span>
+        <span class="brand-name">MUMOFX<small>TRADING TECHNOLOGY</small></span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="academy.html">Academy</a>
+        <a href="bots.html">Bots</a>
+        <a href="market.html">Market</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="admin.html">Admin</a>
+        <button id="logoutButton" class="btn danger" style="padding: 9px 14px; margin-left: 8px;">Logout</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="admin-shell">
+    <div class="container">
+      <div class="admin-top">
+        <div>
+          <div class="eyebrow"><span class="dot"></span>Admin console</div>
+          <h1 class="section-title" style="font-size: clamp(2rem, 3vw, 3rem); margin: 14px 0 0;">MUMOFX administration</h1>
+        </div>
+      </div>
+
+      <div class="admin-grid">
+        <div class="metric-card">
+          <span>Total members</span>
+          <strong id="metricMembers">0</strong>
+        </div>
+        <div class="metric-card">
+          <span>Active admin</span>
+          <strong>1</strong>
+        </div>
+        <div class="metric-card">
+          <span>Academy courses</span>
+          <strong>08</strong>
+        </div>
+        <div class="metric-card">
+          <span>Bot profiles</span>
+          <strong>06</strong>
+        </div>
+      </div>
+
+      <div class="admin-content">
+        <div class="panel">
+          <div class="eyebrow"><span class="dot"></span>Member list</div>
+          <table style="margin-top: 18px;">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Joined</th>
+              </tr>
+            </thead>
+            <tbody id="userTableBody"></tbody>
+          </table>
+        </div>
+
+        <div class="mini-panel">
+          <div class="eyebrow"><span class="dot"></span>Quick actions</div>
+          <div class="admin-actions" style="margin-top: 18px;">
+            <a href="academy.html" class="btn primary">Academy</a>
+            <a href="bots.html" class="btn accent">Bots</a>
+            <a href="dashboard.html" class="btn ghost">Dashboard</a>
+          </div>
+          <ul>
+            <li>Review account creation and member access.</li>
+            <li>Monitor academy engagement and onboarding flow.</li>
+            <li>Keep legal and account pages updated.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-note">
+      <span>© <span id="year"></span> MUMOFX Trading</span>
+      <span><a href="legal/disclaimer.html">Disclaimer</a> • <a href="legal/privacy.html">Privacy</a> • <a href="legal/terms.html">Terms</a></span>
+    </div>
+  </footer>
+
+  <script src="auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      async function loadUsers() {
+        const res = await fetch('/api/users');
+        if (!res.ok) {
+          window.location.href = '/signin.html';
+          return;
+        }
+
+        const data = await res.json();
+        const users = data.users || [];
+        const tbody = document.getElementById('userTableBody');
+        document.getElementById('metricMembers').textContent = String(users.length);
+
+        tbody.innerHTML = users.map((user) => `
+          <tr>
+            <td>${user.name}</td>
+            <td>${user.email}</td>
+            <td><span class="tag">${user.role}</span></td>
+            <td>${new Date(user.createdAt).toLocaleDateString()}</td>
+          </tr>
+        `).join('');
+      }
+
+      loadUsers();
+    });
+  </script>
+</body>
+</html>
