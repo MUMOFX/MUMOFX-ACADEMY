@@ -246,6 +246,27 @@ app.post('/api/signout', (req, res) => {
   });
 });
 
+app.post('/api/reset-demo', requireAuth, requireAdmin, async (req, res) => {
+  const users = readUsers();
+  const admins = users.filter((user) => user.email.toLowerCase() === ADMIN_EMAIL);
+  const admin = admins[0] || {
+    id: `admin-${Date.now()}`,
+    name: 'System Administrator',
+    email: ADMIN_EMAIL,
+    passwordHash: bcrypt.hashSync(ADMIN_PASSWORD, 12),
+    role: 'admin',
+    createdAt: new Date().toISOString()
+  };
+
+  const cleanUsers = [admin];
+  writeUsers(cleanUsers);
+
+  res.json({
+    message: 'Demo member data reset. Only the admin account remains.',
+    users: cleanUsers.map(({ id, name, email, role, createdAt }) => ({ id, name, email, role, createdAt }))
+  });
+});
+
 app.get('/api/users', requireAuth, requireAdmin, (req, res) => {
   const users = readUsers().map(({ id, name, email, role, createdAt }) => ({ id, name, email, role, createdAt }));
   res.json({ users });

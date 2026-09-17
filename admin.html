@@ -98,7 +98,9 @@
             <a href="academy.html" class="btn primary">Academy</a>
             <a href="bots.html" class="btn accent">Bots</a>
             <a href="dashboard.html" class="btn ghost">Dashboard</a>
+            <button id="resetDemoButton" class="btn danger" type="button">Reset demo accounts</button>
           </div>
+          <p id="resetStatus" style="margin-top: 14px; color: var(--muted); min-height: 22px;"></p>
           <ul>
             <li>Review account creation and member access.</li>
             <li>Monitor academy engagement and onboarding flow.</li>
@@ -139,6 +141,28 @@
             <td>${new Date(user.createdAt).toLocaleDateString()}</td>
           </tr>
         `).join('');
+      }
+
+      const resetButton = document.getElementById('resetDemoButton');
+      const resetStatus = document.getElementById('resetStatus');
+
+      if (resetButton) {
+        resetButton.addEventListener('click', async () => {
+          const confirmed = window.confirm('This will remove all non-admin demo accounts. Continue?');
+          if (!confirmed) return;
+
+          resetStatus.textContent = 'Resetting demo accounts...';
+          const res = await fetch('/api/reset-demo', { method: 'POST' });
+          const data = await res.json();
+
+          if (!res.ok) {
+            resetStatus.textContent = data.message || 'Reset failed.';
+            return;
+          }
+
+          resetStatus.textContent = data.message || 'Demo data reset successfully.';
+          loadUsers();
+        });
       }
 
       loadUsers();
