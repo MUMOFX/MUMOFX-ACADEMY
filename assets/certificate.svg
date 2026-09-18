@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-label="MUMOFX certificate of completion">
+  <defs>
+    <linearGradient id="goldStroke" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#f9de88"/>
+      <stop offset="25%" stop-color="#f0c44a"/>
+      <stop offset="50%" stop-color="#fff0b9"/>
+      <stop offset="75%" stop-color="#dca427"/>
+      <stop offset="100%" stop-color="#f6d778"/>
+    </linearGradient>
+    <linearGradient id="blueBg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#061b38"/>
+      <stop offset="100%" stop-color="#071f44"/>
+    </linearGradient>
+    <linearGradient id="silverText" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#f7f9ff"/>
+      <stop offset="30%" stop-color="#dfe6f0"/>
+      <stop offset="70%" stop-color="#cdd8e7"/>
+      <stop offset="100%" stop-color="#f3f7fb"/>
+    </linearGradient>
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#blueBg)"/>
+  <g stroke="url(#goldStroke)" stroke-width="6" fill="none" opacity="0.95">
+    <path d="M 55 60 L 1335 60 L 1488 160 L 1488 865 L 1335 940 L 55 940 L 55 60"/>
+    <path d="M 85 90 L 1305 90 L 1455 170 L 1455 835 L 1305 910 L 85 910 L 85 90" opacity="0.7"/>
+  </g>
+
+  <g transform="translate(0 0)" opacity="0.8">
+    <path d="M 90 340 C 170 200, 300 180, 380 220 C 430 250, 470 320, 540 290 C 620 256, 640 160, 720 150 C 790 141, 840 180, 900 205 C 960 230, 1025 224, 1090 210 C 1170 195, 1265 250, 1360 260" stroke="url(#goldStroke)" stroke-width="3" fill="none"/>
+    <g fill="#d9b75c" font-size="12" font-family="Georgia, serif" font-weight="700">
+      <circle cx="150" cy="275" r="3"/>
+      <circle cx="225" cy="240" r="3"/>
+      <circle cx="310" cy="210" r="3"/>
+      <circle cx="400" cy="260" r="3"/>
+      <circle cx="470" cy="300" r="3"/>
+      <circle cx="600" cy="210" r="3"/>
+      <circle cx="700" cy="220" r="3"/>
+      <circle cx="820" cy="240" r="3"/>
+      <circle cx="930" cy="280" r="3"/>
+      <circle cx="1000" cy="220" r="3"/>
+      <circle cx="1120" cy="250" r="3"/>
+      <circle cx="1260" cy="260" r="3"/>
+    </g>
+  </g>
+
+  <g transform="translate(270 120)">
+    <g transform="translate(0 0)">
+      <path d="M 130 140 L 240 20 L 340 140 L 420 160 L 345 265 L 390 420 L 240 340 L 90 420 L 135 265 L 60 160 Z" fill="none" stroke="url(#goldStroke)" stroke-width="8"/>
+      <text x="240" y="240" text-anchor="middle" font-size="160" font-weight="700" fill="#f4f8ff" font-family="Georgia, serif">M</text>
+    </g>
+  </g>
+
+  <g transform="translate(760 140)">
+    <text x="0" y="0" text-anchor="middle" font-size="74" font-family="Georgia, serif" letter-spacing="18" fill="url(#goldStroke)" font-weight="700">MUMOFX</text>
+    <line x1="-170" y1="26" x2="170" y2="26" stroke="url(#goldStroke)" stroke-width="5"/>
+    <text x="0" y="92" text-anchor="middle" font-size="30" font-family="Georgia, serif" letter-spacing="14" fill="#dfe9f6">TRADING</text>
+    <text x="0" y="150" text-anchor="middle" font-size="24" font-family="Georgia, serif" letter-spacing="8" fill="#9fb2cd">ANALYZE | EXECUTE | SUCCEED</text>
+  </g>
+
+  <g transform="translate(820 370)">
+    <text x="0" y="0" text-anchor="middle" font-size="60" font-family="Georgia, serif" fill="url(#goldStroke)" font-weight="700">CERTIFICATE OF COMPLETION</text>
+    <text x="0" y="65" text-anchor="middle" font-size="26" font-family="Georgia, serif" letter-spacing="8" fill="#dfe9f6">THIS CERTIFIES THAT</text>
+  </g>
+
+  <g transform="translate(800 430)">
+    <text x="0" y="0" text-anchor="middle" font-size="94" font-family="Georgia, serif" fill="#f7d97a" font-style="italic">Student Name</text>
+    <line x1="-260" y1="28" x2="260" y2="28" stroke="url(#goldStroke)" stroke-width="4"/>
+  </g>
+
+  <g transform="translate(800 520)">
+    <text x="0" y="0" text-anchor="middle" font-size="30" font-family="Georgia, serif" fill="#dfe9f6">Has successfully completed the MUMOFX TRADING program and</text>
+    <text x="0" y="44" text-anchor="middle" font-size="30" font-family="Georgia, serif" fill="#dfe9f6">demonstrated the knowledge, skills and discipline required to trade</text>
+    <text x="0" y="88" text-anchor="middle" font-size="30" font-family="Georgia, serif" fill="#dfe9f6">in the financial markets.</text>
+  </g>
+
+  <g transform="translate(800 640)">
+    <text x="0" y="0" text-anchor="middle" font-size="24" font-family="Georgia, serif" letter-spacing="7" fill="#dfe9f6">COURSE TITLE</text>
+    <text x="0" y="50" text-anchor="middle" font-size="42" font-family="Georgia, serif" fill="url(#goldStroke)" font-weight="700">COMPLETE TRADING COURSE</text>
+    <text x="0" y="90" text-anchor="middle" font-size="22" font-family="Georgia, serif" letter-spacing="6" fill="#dfe9f6">PRICE ACTION | SMC | RISK MANAGEMENT | TRADING PSYCHOLOGY | LIVE MARKET PRACTICE</text>
+  </g>
+
+  <g transform="translate(240 710)" font-family="Georgia, serif" fill="url(#goldStroke)" text-anchor="middle">
+    <rect x="0" y="0" width="180" height="96" rx="10" fill="none" stroke="url(#goldStroke)" stroke-width="3"/>
+    <text x="90" y="54" font-size="18">DATE OF</text>
+    <text x="90" y="76" font-size="18">COMPLETION</text>
+    <text x="90" y="122" font-size="22">DD / MM / YYYY</text>
+  </g>
+
+  <g transform="translate(650 700)">
+    <text x="0" y="0" text-anchor="middle" font-size="78" font-family="Georgia, serif" fill="#f7d97a" font-style="italic">James Mumo</text>
+    <line x1="-120" y1="30" x2="120" y2="30" stroke="url(#goldStroke)" stroke-width="4"/>
+    <text x="0" y="72" text-anchor="middle" font-size="18" font-family="Georgia, serif" fill="#dfe9f6" letter-spacing="4">JAMES MUMO</text>
+    <text x="0" y="96" text-anchor="middle" font-size="16" font-family="Georgia, serif" fill="#dfe9f6" letter-spacing="2">FOUNDER &amp; INSTRUCTOR</text>
+    <text x="0" y="118" text-anchor="middle" font-size="16" font-family="Georgia, serif" fill="#dfe9f6" letter-spacing="2">MUMOFX TRADING</text>
+  </g>
+
+  <g transform="translate(1120 700)">
+    <text x="0" y="0" text-anchor="middle" font-size="78" font-family="Georgia, serif" fill="#f7d97a" font-style="italic">Mercy Mwangi</text>
+    <line x1="-120" y1="30" x2="120" y2="30" stroke="url(#goldStroke)" stroke-width="4"/>
+    <text x="0" y="72" text-anchor="middle" font-size="18" font-family="Georgia, serif" fill="#dfe9f6" letter-spacing="4">MERCY MWANGI</text>
+    <text x="0" y="96" text-anchor="middle" font-size="16" font-family="Georgia, serif" fill="#dfe9f6" letter-spacing="2">SECRETARY</text>
+    <text x="0" y="118" text-anchor="middle" font-size="16" font-family="Georgia, serif" fill="#dfe9f6" letter-spacing="2">MUMOFX TRADING</text>
+  </g>
+
+  <g transform="translate(800 818)" text-anchor="middle">
+    <text x="0" y="0" font-size="24" font-family="Georgia, serif" fill="#dfe9f6" letter-spacing="8">STAY DISCIPLINED, THE MARKET WILL BE THERE TOMORROW.</text>
+    <line x1="-390" y1="30" x2="390" y2="30" stroke="url(#goldStroke)" stroke-width="4"/>
+  </g>
+</svg>
