@@ -17,10 +17,6 @@ if (!fs.existsSync(USERS_FILE)) fs.writeFileSync(USERS_FILE, JSON.stringify([]),
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname), {
-  index: 'index.html',
-  extensions: ['html']
-}));
 
 app.use(session({
   secret: SESSION_SECRET,
@@ -293,6 +289,11 @@ app.get('/signup.html', (req, res) => {
   }
   res.sendFile(path.join(__dirname, 'signup.html'));
 });
+
+app.use(express.static(path.join(__dirname), {
+  index: 'index.html',
+  extensions: ['html']
+}));
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
